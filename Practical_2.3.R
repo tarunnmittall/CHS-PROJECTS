@@ -1,0 +1,13 @@
+data <- read.csv(file="diabetes.csv",head=TRUE,sep = ",")
+library(caTools)
+split<-sample.split(data,SplitRatio=0.8)
+split
+training<-subset(data,split=="TRUE")
+testing<-subset(data,split=="FALSE")
+model<-glm(Outcome~.-Pregnancies,training,family="binomial")
+summary(model)
+res<-predict(model,training,type="response")
+library(ROCR)
+ROCRPred=prediction(res,training$Outcome)
+ROCRPref=performance(ROCRPred,"tpr","fpr")
+plot(ROCRPref,colorize=TRUE,at=seq(0.1,by=0.1))

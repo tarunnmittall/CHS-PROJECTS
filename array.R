@@ -1,0 +1,13 @@
+v1 <- c(1, 4, 5)
+v2 <- c(10, 20, 30, 40, 50, 60)
+
+col_name <- c("c1", "c2", "c3")
+row_name <- c("r1", "r2", "r3")
+mat_name <- c("mat1", "mat2")
+
+v3 <- array(c(v1, v2), dim = c(3, 3, 2)
+    , dimnames = list(row_name, col_name, mat_name))
+
+print(v3)
+print(v3[,2,1])
+print(v3[,,2])
